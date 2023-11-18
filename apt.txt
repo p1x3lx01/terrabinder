@@ -1,2 +1,10 @@
-librocksdb-dev
-golang-go
+build-essential
+ca-certificates
+curl
+gcc
+git
+libgles2
+libgles2-mesa-dev
+mercurial
+pkg-config
+python3-pip
