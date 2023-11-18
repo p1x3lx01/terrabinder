@@ -2,17 +2,20 @@
 
 # تحديد مكان تثبيت Go
 wget https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
-sudo tar -xvf go1.21.4.linux-amd64.tar.gz
-sudo mv go /usr/local
-export GOROOT=/usr/local/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+tar -xvf go1.21.4.linux-amd64.tar.gz
+mv go /usr/local
 
 # تعيين المتغيرات البيئية لـ Go
-export GOROOT=$GO_INSTALL_DIR/go
-export PATH=$PATH:$GOROOT/bin
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:$GOBIN
 mkdir -p $GOPATH $GOBIN
+
+echo 'export GOROOT=/usr/local/go' >> $HOME/.bashrc
+echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
+echo 'export GOBIN=$GOPATH/bin' >> $HOME/.bashrc
+echo 'export PATH=$PATH:$GOROOT/bin:$GOBIN' >> $HOME/.bashrc
 
 # تحميل وبناء المشروع
 echo "تحميل وبناء Terra Core..."
@@ -21,4 +24,3 @@ cd core
 git fetch --all --force
 git checkout v2.3.0
 make build && make install
-
