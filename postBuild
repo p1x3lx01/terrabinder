@@ -1,21 +1,28 @@
 #!/bin/bash
 
-# تثبيت Go
-echo "تثبيت Go..."
-wget https://golang.org/dl/go1.18.1.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
-export PATH=$PATH:/usr/local/go/bin
+# تحديد مكان تثبيت Go
+GO_INSTALL_DIR=$HOME/go-install
+mkdir -p $GO_INSTALL_DIR
+
+# تحميل Go وتثبيته في دليل المستخدم
+echo "تحميل وتثبيت Go..."
+wget https://golang.org/dl/go1.18.1.linux-amd64.tar.gz -O go.tar.gz
+tar -C $GO_INSTALL_DIR -xzf go.tar.gz
+
+# تعيين المتغيرات البيئية لـ Go
+export GOROOT=$GO_INSTALL_DIR/go
+export PATH=$PATH:$GOROOT/bin
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 mkdir -p $GOPATH $GOBIN
 
 # تحميل وبناء المشروع
 echo "تحميل وبناء Terra Core..."
-git clone https://github.com/terra-money/classic-core.git
+git clone https://github.com/classic-terra/core/
 cd core
 git checkout main
-COSMOS_BUILD_OPTIONS=rocksdb make build && make install
+COSMOS_BUILD_OPTIONS=rocksdb make install
 
 # تكوين بيئة التشغيل
 echo "تكوين بيئة التشغيل..."
-# هنا يمكنك إضافة أوامر لتكوين البيئة، مثل إعداد عقدة Terra أو تكوين المنافذ
+# أضف هنا أي أوامر إضافية لتكوين البيئة
