@@ -8,3 +8,4 @@ libgles2-mesa-dev
 mercurial
 pkg-config
 python3-pip
+nano
