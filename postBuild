@@ -1,13 +1,11 @@
 #!/bin/bash
 
 # تحديد مكان تثبيت Go
-GO_INSTALL_DIR=$HOME/go-install
-mkdir -p $GO_INSTALL_DIR
-
-# تحميل Go وتثبيته في دليل المستخدم
-echo "تحميل وتثبيت Go..."
-wget https://golang.org/dl/go1.18.1.linux-amd64.tar.gz -O go.tar.gz
-tar -C $GO_INSTALL_DIR -xzf go.tar.gz
+wget https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
+sudo tar -xvf go1.21.4.linux-amd64.tar.gz
+sudo mv go /usr/local
+export GOROOT=/usr/local/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # تعيين المتغيرات البيئية لـ Go
 export GOROOT=$GO_INSTALL_DIR/go
@@ -20,9 +18,7 @@ mkdir -p $GOPATH $GOBIN
 echo "تحميل وبناء Terra Core..."
 git clone https://github.com/classic-terra/core/
 cd core
-git checkout main
+git fetch --all --force
+git checkout v2.3.0
 make build && make install
 
-# تكوين بيئة التشغيل
-echo "تكوين بيئة التشغيل..."
-# أضف هنا أي أوامر إضافية لتكوين البيئة
