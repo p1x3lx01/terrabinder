@@ -21,7 +21,7 @@ echo "تحميل وبناء Terra Core..."
 git clone https://github.com/classic-terra/core/
 cd core
 git checkout main
-COSMOS_BUILD_OPTIONS=rocksdb make install
+COSMOS_BUILD_OPTIONS=make build && make install
 
 # تكوين بيئة التشغيل
 echo "تكوين بيئة التشغيل..."
