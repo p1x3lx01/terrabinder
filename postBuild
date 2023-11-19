@@ -70,7 +70,6 @@ cd core
 git fetch --all --force
 git checkout v2.3.0
 echo "::: بناء وتثبيت 'classic-terra/core'..."
-make build && make install
 
 # العودة إلى الدليل الأصلي
 cd ..
